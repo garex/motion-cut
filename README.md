@@ -18,8 +18,12 @@ Second script eats editor file, videos, theirs motions and generates another edi
 How to run
 ----------
 
-`docker run --volume $(pwd):/root --rm garex/motion-cut-edit --editor-file project.kdenlive --videos video1.mp4 video2.mp4 --motions video1.txt video2.txt > project.auto.kdenlive`
+```
+docker run --volume $(pwd):/root --rm garex/motion-cut-detect --video=video1.mp4 --mask=video1.png > video1.txt
+docker run --volume $(pwd):/root --rm garex/motion-cut-detect --video=video2.mp4 --mask=video2.png > video2.txt
 
+docker run --volume $(pwd):/root --rm garex/motion-cut-edit --editor-file project.kdenlive --videos video1.mp4 video2.mp4 --motions video1.txt video2.txt > project.auto.kdenlive
+```
 
 Supported editors
 -----------------
@@ -30,3 +34,12 @@ List of supported editors:
 
 
 If you want to see your editor in this list you have two options: write adapter script for it or donate some money.
+
+
+Build docker images
+-------------------
+
+```
+docker build detect --tag=garex/motion-cut-detect
+docker build edit --tag=garex/motion-cut-edit
+```
